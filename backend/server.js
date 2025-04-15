@@ -38,10 +38,16 @@ app.post('/api/generate', async (req, res) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        messages: [{
-          role: "user",
-          content: prompt
-        }],
+        messages: [
+          {
+            role: "system",
+            content: "You are a coding assistant. Always provide code in your response, even if the user's request is not explicitly about code. Format your response with code blocks using ``` and include a brief explanation of what the code does."
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
         model: "deepseek-coder",
         temperature: 0.7,
         max_tokens: 2000,
